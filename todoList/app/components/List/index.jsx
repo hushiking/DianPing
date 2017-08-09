@@ -23,7 +23,6 @@ class List extends React.Component {
                     return <li key={index} onClick={this.clickHandler.bind(this, item.id)}>{item.text}</li>
                 })}
                 </ReactCSSTransitionGroup>
-
             </ul>
         )
     }
