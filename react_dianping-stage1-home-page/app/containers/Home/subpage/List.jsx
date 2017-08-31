@@ -78,7 +78,7 @@ class List extends React.Component {
             })
         }).catch(ex => {
             if (__DEV__) {
-                console.error('首页”猜你喜欢“获取数据报错, ', ex.message)
+                console.error('首页“猜你喜欢”获取数据报错, ', ex.message)
             }
         })
     }
