@@ -1,27 +1,27 @@
 import React from 'react'
 import PureRenderMixin from 'react-addons-pure-render-mixin'
-import { getListData } from '../../../fetch/home/home'
 
-import ListComponent from '../../../components/List'
+import { getCommentData } from '../../../fetch/detail/detail.js'
+import ListComponent from '../../../components/CommentList'
 import LoadMore from '../../../components/LoadMore'
 
 import './style.less'
 
-class List extends React.Component {
+class Comment extends React.Component {
     constructor(props, context) {
-        super(props, context);
-        this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
+        super(props, context)
+        this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this)
         this.state = {
-            data: [], // 存储列表数据
-            hasMore: false, // 记录当前状态下，还有没有更多数据可供加载
-            isLoadingMore: false, // 记录当前状态下是“加载中。。。”还是“点击加载更多”
-            page: 0 // 下一页数据页码
+            data: [],
+            hasMore: false,
+            isLoadingMore: false,
+            page: 0
         }
     }
     render() {
         return (
-            <div>
-                <h2 className="home-list-title">猜你喜欢</h2>
+            <div className="detail-comment-subpage">
+                <h2>用户点评</h2>
                 {
                     this.state.data.length
                         ? <ListComponent data={this.state.data} />
@@ -29,20 +29,18 @@ class List extends React.Component {
                 }
                 {
                     this.state.hasMore
-                        ? <LoadMore isLoadingMore={this.state.isLoadingMore} loadMoreFn={this.loadMoreData.bind(this)} />
+                        ? <LoadMore isLoadingMore={this.state.isLoadingMore} loadMoreFn={() => this.loadMoreData()} />
                         : ''
                 }
             </div>
         )
     }
     componentDidMount() {
-        // 获取首页数据
         this.loadFirstPageData()
     }
-    // 获取首页数据
     loadFirstPageData() {
-        const cityName = this.props.cityName
-        const result = getListData(cityName, 0)
+        const id = this.props.id
+        const result = getCommentData(0, id)
         this.resultHandle(result)
     }
     // 加载更多数据
@@ -52,36 +50,38 @@ class List extends React.Component {
             isLoadingMore: true
         })
 
-        const cityName = this.props.cityName
+        const id = this.props.id
         const page = this.state.page
-        const result = getListData(cityName, page)
+        const result = getCommentData(page, id)
         this.resultHandle(result)
 
         // 增加 page 技术
         this.setState({
-            page: page + 1,
             isLoadingMore: false
         })
     }
-    // 处理数据
     resultHandle(result) {
         result.then(res => {
             return res.json()
         }).then(json => {
+            const page = this.state.page
+            this.setState({
+                page: page + 1
+            })
             const hasMore = json.hasMore
             const data = json.data
 
             this.setState({
                 hasMore: hasMore,
-                // 注意，这里讲最新获取的数据，拼接到原数据之后，使用 concat 函数
+                // 拼接之前的数据
                 data: this.state.data.concat(data)
             })
         }).catch(ex => {
             if (__DEV__) {
-                console.error('首页“猜你喜欢”获取数据报错, ', ex.message)
+                console.error('详情页获取用户评论数据出错，', ex.message)
             }
         })
     }
 }
 
-export default List
+export default Comment

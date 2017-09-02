@@ -2,6 +2,7 @@ import React from 'react'
 import PureRenderMixin from 'react-addons-pure-render-mixin'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
+
 import * as userInfoActionsFromOtherFile from '../actions/userinfo.js'
 import LocalStore from '../util/localStore.js'
 import { CITYNAME } from '../config/localStoreKey.js'

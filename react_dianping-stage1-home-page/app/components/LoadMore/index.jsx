@@ -34,7 +34,7 @@ class LoadMore extends React.Component {
                 loadMoreFn()
             }
         }
-        window.addEventListener('scroll', function() {
+        window.addEventListener('scroll', function () {
             if (this.props.isLoadingMore) {
                 return
             }

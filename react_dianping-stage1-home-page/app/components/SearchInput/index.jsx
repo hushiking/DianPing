@@ -29,8 +29,6 @@ class SearchInput extends React.Component {
         })
     }
     changeHandle(e) {
-        console.log(e.target.value);
-        
         this.setState({
             value: e.target.value
         })

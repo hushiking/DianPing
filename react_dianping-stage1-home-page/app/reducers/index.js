@@ -1,9 +1,11 @@
 import { combineReducers } from 'redux'
 import userinfo from './userinfo'
+import store from './store'
 
-// 将 userinfo 绑定在 stata 上
+// 将 userinfo，store 绑定在 state 上
 const rootReducer = combineReducers({
-    userinfo
+    userinfo,
+    store
 })
 
 export default rootReducer
