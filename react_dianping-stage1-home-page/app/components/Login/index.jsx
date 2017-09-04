@@ -37,6 +37,7 @@ class Login extends React.Component {
             username: e.target.value
         })
     }
+    // 点击登录，并将用户名保存在 redux 中
     clickHandle() {
         const username = this.state.username
         const loginHandle = this.props.loginHandle

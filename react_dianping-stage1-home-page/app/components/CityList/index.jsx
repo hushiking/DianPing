@@ -23,6 +23,7 @@ class CityList extends React.Component {
             </div>
         )
     }
+    // 点击切换当前城市
     clickHandle(newCity) {
         const changeFn = this.props.changeFn
         changeFn(newCity)

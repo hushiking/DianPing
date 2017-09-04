@@ -33,11 +33,11 @@ class SearchInput extends React.Component {
             value: e.target.value
         })
     }
+    // 回车操作
     keyUpHandle(e) {
         if (e.keyCode !== 13) {
             return
         }
-        console.log(this.state.value)
         this.props.enterHandle(this.state.value)
     }
 }

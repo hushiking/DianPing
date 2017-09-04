@@ -79,6 +79,21 @@ router.get('/api/detail/comment/:page/:id', function (ctx, next) {
 
     ctx.body = detailComment
 })
+// 订单列表
+const orderList = require('./orderList/orderList')
+router.get('/api/orderList/:username', function(ctx, next) {
+    const params = ctx.params
+    const username = params.username
+    console.log('用户名：' + username)
+    ctx.body = orderList
+})
+// 提交评论
+router.post('/api/submitComment', function(ctx, next) {
+    ctx.body = {
+        errno: 0,
+        msg: 'ok'
+    }
+})
 
 // 开始服务并生成路由
 app.use(router.routes())

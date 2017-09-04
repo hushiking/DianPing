@@ -64,6 +64,7 @@ class Login extends React.Component {
             })
         }
     }
+    // 跳转用户中心页面
     goUserPage() {
         hashHistory.push('/user')
     }

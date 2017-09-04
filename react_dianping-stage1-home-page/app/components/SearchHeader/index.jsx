@@ -28,6 +28,7 @@ class SearchHeader extends React.Component {
     clickHandle() {
         window.history.back()
     }
+    // 搜索页面输入回车仍跳转到搜索页面
     enterHandle(value) {
         hashHistory.push('/search/all/' + encodeURIComponent(value))
     }
