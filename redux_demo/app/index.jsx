@@ -8,12 +8,12 @@ import fn from './redux-demo.js'
 fn()
 
 class Hello extends React.Component {
-  render() {
-    return <p>hello world</p>
-  }
+    render() {
+        return <p>hello world</p>
+    }
 }
 
 ReactDom.render(
-  <Hello/>,
-  document.getElementById('root')
+    <Hello />,
+    document.getElementById('root')
 )

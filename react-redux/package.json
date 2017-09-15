@@ -5,6 +5,7 @@
     "main": "index.js",
     "scripts": {
         "start": "set NODE_ENV=dev&& webpack-dev-server --progress --color",
+        "mock": "nodemon ./mock/server.js",
         "test": "echo \"Error: no test specified\" && exit 1"
     },
     "keywords": [],
@@ -26,10 +27,14 @@
         "css-loader": "^0.28.4",
         "extract-text-webpack-plugin": "^3.0.0",
         "html-webpack-plugin": "^2.30.1",
+        "koa": "^2.3.0",
+        "koa-body": "^2.3.0",
+        "koa-router": "^7.2.1",
         "less": "^2.7.2",
         "less-loader": "^4.0.5",
         "open-browser-webpack-plugin": "0.0.5",
         "react-transform-hmr": "^1.0.4",
+        "request": "^2.81.0",
         "style-loader": "^0.18.2",
         "url-loader": "^0.5.9",
         "webpack": "^3.5.1",

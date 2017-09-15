@@ -6,6 +6,7 @@ var OpenBrowserPlugin = require('open-browser-webpack-plugin')
 module.exports = {
     entry: path.resolve(__dirname, 'app/index.jsx'),
     output: {
+        path: __dirname + '/build',
         filename: "bundle.js"
     },
     module: {
@@ -56,6 +57,7 @@ module.exports = {
             }
         ]
     },
+    // 导入文件时可以省略 .js .jsx 的后缀名
     resolve: {
         extensions: ['.js', '.jsx']
     },
@@ -75,7 +77,16 @@ module.exports = {
             __DEV__: JSON.stringify(JSON.parse((process.env.NODE_ENV == 'dev') || 'false'))
         })
     ],
+    devtool: 'cheap-module-eval-source-map',
     devServer: {
+        proxy: {
+            // 凡是`/api`开头的http请求，都会被代理到localhost:3000
+            // koa代码在./mock目录中，npm run mock 启动服务
+            '/api': {
+                target: 'http://localhost:3000',
+                secure: false
+            }
+        },
         historyApiFallback: true,  //不跳转，在开发单页应用时非常有用，它依赖于HTML5 history API，如果设置为true，所有的跳转将指向index.html
         inline: true,  // 实时刷新
         hot: true  //是否使用热加载插件
