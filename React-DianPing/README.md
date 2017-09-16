@@ -1,6 +1,6 @@
 # React-DianPing
 
-本项目综合运用了 `react、redux、webpack2、数据模拟mock` 等技术，初步实现了大众点评模拟 `App` 。
+本项目综合运用了 `react、redux、webpack2、数据模拟 mock` 等技术，初步实现了大众点评模拟 `App` 。
 
 ## 目录结构
 

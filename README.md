@@ -7,5 +7,5 @@
 ## 目录结构
 
 1. `React-DianPing` 目录是模拟大众点评 `App` 的源代码。
-1. `react-redux` 目录是 `react` 结合 `redux` 测试目录。
+1. `react-redux` 目录是 `react` 结合 `redux` 测试案例。
 1. `redux-demo` 目录是 `redux` 单独使用案例。
