@@ -1,13 +1,12 @@
 var pkg = require('./package.json')
 var path = require('path')
 var webpack = require('webpack')
-var autoprefixer = require('autoprefixer')
 var HtmlWebpackPlugin = require('html-webpack-plugin')
 var ExtractTextPlugin = require('extract-text-webpack-plugin')
-
+// 抽取less文件配置
 var extractLess = new ExtractTextPlugin({
-    filename: '[name].[contenthash].css',
-    disable: process.env.NODE_ENV === 'dev'
+    filename: "/css/[name].[contenthash].css",
+    disable: process.env.NODE_ENV === "dev"
 })
 
 module.exports = {
@@ -37,7 +36,7 @@ module.exports = {
                     fallback: 'style-loader',
                     use: [
                         { loader: 'css-loader' },
-                        { loader: 'postcss-loader' },
+                        { loader: 'postcss-loader' }
                     ]
                 })
             },
@@ -48,6 +47,7 @@ module.exports = {
                     fallback: 'style-loader',
                     use: [
                         { loader: 'css-loader' },
+                        { loader: 'postcss-loader' },
                         { loader: 'less-loader' }
                     ]
                 })
@@ -79,11 +79,17 @@ module.exports = {
         ]
     },
     plugins: [
+        // webpack1 迁移 webpack2，postcss-loader配置
+        // https://webpack.js.org/guides/migrating/#complex-options
         /* new webpack.LoaderOptionsPlugin({
             options: {
-                postcss: [
-                    autoprefixer(),
-                ]
+                postcss: function () {
+                    return [
+                        require("autoprefixer")({
+                            browsers: ['ie>=8', '>1% in CN']
+                        })
+                    ]
+                }
             }
         }), */
         // webpack 内置的 banner-plugin
@@ -111,8 +117,11 @@ module.exports = {
             }
         }),
 
-        // 分离CSS和JS文件
-        new ExtractTextPlugin('/css/[name].[chunkhash:8].css'),
+        // 分离CSS和JS文件，抽取less的时候会一并抽取css文件，这里可以省略
+        // new ExtractTextPlugin('/css/[name].[chunkhash:8].css'),
+
+        // 抽取less文件
+        extractLess,
 
         // 提供公共代码
         new webpack.optimize.CommonsChunkPlugin({
