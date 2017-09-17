@@ -3,8 +3,13 @@ var path = require('path')
 var webpack = require('webpack')
 var HtmlWebpackPlugin = require('html-webpack-plugin')
 var ExtractTextPlugin = require('extract-text-webpack-plugin')
-// 抽取less文件配置
-var extractLess = new ExtractTextPlugin({
+// css 文件抽取配置项
+var ExtractCSS = new ExtractTextPlugin({
+    filename: "/css/[name].[contenthash].css",
+    disable: process.env.NODE_ENV === "dev"
+})
+// less文件抽取配置项
+var ExtractLess = new ExtractTextPlugin({
     filename: "/css/[name].[contenthash].css",
     disable: process.env.NODE_ENV === "dev"
 })
@@ -32,7 +37,7 @@ module.exports = {
             {
                 test: /\.css$/,
                 exclude: /node_modules/,
-                use: ExtractTextPlugin.extract({
+                use: ExtractCSS.extract({
                     fallback: 'style-loader',
                     use: [
                         { loader: 'css-loader' },
@@ -43,7 +48,7 @@ module.exports = {
             {
                 test: /\.less$/,
                 exclude: /node_modules/,
-                use: extractLess.extract({
+                use: ExtractLess.extract({
                     fallback: 'style-loader',
                     use: [
                         { loader: 'css-loader' },
@@ -117,11 +122,12 @@ module.exports = {
             }
         }),
 
-        // 分离CSS和JS文件，抽取less的时候会一并抽取css文件，这里可以省略
+        // 如果没有 less文件，可以单独抽取 css文件
         // new ExtractTextPlugin('/css/[name].[chunkhash:8].css'),
 
-        // 抽取less文件
-        extractLess,
+        // 有 less文件则分别抽取 css与 less文件到不同文件
+        ExtractCSS,
+        ExtractLess,
 
         // 提供公共代码
         new webpack.optimize.CommonsChunkPlugin({
