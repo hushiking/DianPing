@@ -2,7 +2,7 @@ import * as actionTypes from '../constants/store'
 
 const initialState = []
 
-// 定义了 userinfo 的计算规则
+// 定义了 store(收藏) 的计算规则
 export default function store(state = initialState, action) {
     switch (action.type) {
         case actionTypes.STORE_UPDATE:
