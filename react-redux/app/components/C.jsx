@@ -8,7 +8,8 @@ export default class C extends React.Component {
     }
   }
   changeUserInfo = () => {
-    const actions = this.props.actions // 4.界面 -> action，触发数据变化
+    const actions = this.props.actions
+    // redux 执行数据流：1. 界面 -> action，触发数据变化
     actions.login({
       userid: '123',
       city: 'shanghai'

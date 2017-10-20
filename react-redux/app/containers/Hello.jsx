@@ -31,7 +31,8 @@ class Hello extends React.Component {
     )
   }
 }
-// 3.绑定userinfo到组件的props属性上，定义数据(即state)变化之后的派发规则，virtualDom -> 界面
+// 3.绑定 userinfo 到组件的 props 属性上，定义数据(即 state)变化之后的派发规则
+// redux 执行数据流：4. store -> virtualDom -> 界面
 const mapStateToProps = state => {
   return {
     userinfo: state.userinfo
@@ -44,7 +45,8 @@ const mapStateToProps = state => {
 //   }
 // }
 
-// 4.绑定userinfoActions到组件的props属性上，触发数据变化，界面 -> action
+// 4.绑定 userinfoActions 到组件的 props 属性上，等待界面触发数据变化
+// redux 执行数据流：4. store -> virtualDom -> 界面
 function mapDispatchToProps(dispatch) {
   return {
     userinfoActions: bindActionCreators(userinfoActions, dispatch)

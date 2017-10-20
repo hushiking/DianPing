@@ -2,7 +2,8 @@ import * as actionTypes from '../constants/userinfo'
 
 const initialState = {}
 
-// 1.定义 userinfo 计算规则，action -> reducer
+// 1.定义 userinfo 计算规则
+// redux 执行数据流：2. action -> reducer
 export default function userinfo(state = initialState, action) {
   switch (action.type) {
     // 登录
