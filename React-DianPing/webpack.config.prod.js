@@ -1,3 +1,4 @@
+// windows系统 rd/s/q build 删除文件夹（不能添加./）；mac系统 rm -rf ./build可行
 var pkg = require('./package.json')
 var path = require('path')
 var webpack = require('webpack')
@@ -5,12 +6,12 @@ var HtmlWebpackPlugin = require('html-webpack-plugin')
 var ExtractTextPlugin = require('extract-text-webpack-plugin')
 // css 文件抽取配置项
 var ExtractCSS = new ExtractTextPlugin({
-    filename: "/css/[name].[contenthash].css",
+    filename: "/css/[name][id].[contenthash:8].css",
     disable: process.env.NODE_ENV === "dev"
 })
 // less文件抽取配置项
 var ExtractLess = new ExtractTextPlugin({
-    filename: "/css/[name].[contenthash].css",
+    filename: "/css/[id].[name].[contenthash:8].css",
     disable: process.env.NODE_ENV === "dev"
 })
 

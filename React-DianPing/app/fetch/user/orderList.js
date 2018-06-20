@@ -1,5 +1,6 @@
 import { get } from '../get'
 import { post } from '../post'
+import config from '../../config/config'
 
 export function getOrderListData(username) {
     let url = '/api/orderList/' + username

@@ -1,3 +1,4 @@
+// webpack-dev-server会自动查找webpack.config.js文件并运行
 var path = require('path')
 var webpack = require('webpack')
 var HtmlWebpackPlugin = require('html-webpack-plugin')
